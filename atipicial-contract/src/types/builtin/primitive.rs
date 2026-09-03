@@ -1,0 +1,22 @@
+// Copyright @ 2024 - present, Atipicial Network
+// All Rights Reserved.
+
+extern crate alloc;
+
+/// Marker trait for primitive types that can be used as keys in a Map.
+pub trait Primitive: Clone + PartialEq + Eq + PartialOrd + Ord + 'static {}
+
+impl Primitive for bool {}
+impl Primitive for u8 {}
+impl Primitive for u16 {}
+impl Primitive for u32 {}
+impl Primitive for u64 {}
+impl Primitive for u128 {}
+impl Primitive for i8 {}
+impl Primitive for i16 {}
+impl Primitive for i32 {}
+impl Primitive for i64 {}
+impl Primitive for i128 {}
+impl Primitive for char {}
+// Note: String is not available in no_std, use ByteString instead
+impl<'a, T: Primitive + 'static> Primitive for &'a T where &'a T: 'static {}

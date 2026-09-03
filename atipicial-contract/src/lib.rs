@@ -1,0 +1,121 @@
+// Copyright @ 2024 - present, Atipicial Network
+// All Rights Reserved.
+
+#![no_std]
+extern crate alloc;
+
+pub mod contract;
+pub mod crypto;
+pub mod env;
+pub mod event;
+#[macro_use]
+pub mod macros;
+pub mod runtime;
+pub mod serialize;
+pub mod services;
+pub mod smart_contract;
+pub mod storage;
+pub mod types;
+pub mod native;
+pub mod context;
+pub mod account;
+pub mod error;
+pub mod atipicial_features;
+pub mod utils;
+pub mod serialization;
+
+pub use atipicial_contract_proc_macros::{contract, structs, program, account as account_attr, declare_id, event, init_if_needed, error_code_attr as error_code};
+
+// Re-export derive macros
+pub use atipicial_contract_proc_macros::Accounts;
+pub use atipicial_contract_proc_macros::ErrorCode;
+
+// Export contract annotations
+pub use atipicial_contract_proc_macros::{
+    method,
+    safe as safe_attr,
+    contract_author,
+    contract_permission,
+    contract_standards,
+    contract_version,
+    contract_meta,
+    contract_impl,
+};
+
+// Modules re-exported for convenience
+pub mod prelude {
+    // Contract module
+    pub use crate::contract::{call, create_multi_signs_account, create_standard_account, get_call_flags};
+    pub use crate::contract::aep17::{Aep17Token, PREFIX_BALANCE, TOTAL_SUPPLY_KEY};
+    pub use crate::contract::aep11::{Aep11Token, TokenState};
+    pub use crate::contract::aep24::{AEP24, AEP24Implementation, RoyaltyInfo, RoyaltyPayment, RoyaltyRegistry};
+    pub use crate::contract::aep26_27::{AEP26Receiver, AEP27Receiver, TransferCallback, ReceiverContract};
+
+    // Crypto module
+    pub use crate::crypto::{check_multi_signs, check_sign};
+
+    // Native contracts
+    pub use crate::native::{gas, atipicial};
+    pub use crate::native::cryptolib::{CryptoLib, EcdsaCurve};
+    pub use crate::native::atipicial_governance::{AtipicialGovernance, AccountState, CandidateInfo};
+    pub use crate::native::stdlib_extended::StdLibExtended;
+
+    // Runtime services
+    pub use crate::runtime::{
+        abort, abort_with_message, burn_gas, get_calling_script_hash,
+        check_witness_with_account, check_witness_with_public_key, current_signers,
+        get_entry_script_hash, get_executing_script_hash,
+        get_gas_left, get_address_version, get_invocation_counter, get_network,
+        get_notifications, get_platform, get_random, get_time, get_trigger, load_script, log, notify,
+        get_tx as tx,
+    };
+
+    // Smart contract base
+    pub use crate::smart_contract::SmartContract;
+
+    // Services
+    pub use crate::services::contract::Contract;
+    pub use crate::services::crypto::Crypto;
+    pub use crate::services::event::Event;
+    pub use crate::services::iterator::Iterator;
+    pub use crate::services::runtime::Runtime;
+    pub use crate::services::storage::Storage;
+
+    // Storage
+    pub use crate::storage::{StorageContext, StorageItem, StorageMap};
+
+    // Types
+    pub use crate::types::{
+        Array, Bytes, H160, Int256, Map, ByteString,
+        Any, CallFlags, FindOptions, Notification, PublicKey, TriggerType, Tx,
+    };
+    pub use crate::types::builtin::any::IntoAny;
+    pub use crate::types::builtin::string::IntoByteString;
+
+    // Macros
+    pub use atipicial_contract_proc_macros::*;
+    
+    // Solana-style imports
+    pub use crate::context::{Context, AccountInfo, Account, Signer, SystemAccount, Program, System, Token, Result, Pubkey, Clock, Rent, CpiContext, Pda};
+    
+    // Serialization utilities
+    pub use crate::serialization::{StorageSerialize, storage_get, storage_put};
+    pub use crate::account::{AccountSerialize, AccountDeserialize, AccountLoader, AccountMeta, ToAccountInfo, ToAccountMetas};
+    pub use crate::error::ContractError;
+    
+    // Re-export derive macros and macros
+    pub use atipicial_contract_proc_macros::{Accounts, ErrorCode, program, account as account_attr, declare_id, event, init_if_needed, error_code_attr as error_code};
+    pub use crate::{require, require_eq, require_neq, require_gt, require_gte, require_keys_eq, require_keys_neq};
+    
+    // Utility macros for no_std
+    pub use crate::{format, emit, println, msg};
+    pub use alloc::vec;
+    
+    // Atipicial Complete Features
+    pub use crate::atipicial_features::{
+        oracle,
+        native,
+        crypto as atipicial_crypto,
+        Block, Transaction, Contract as ContractInfo,
+    };
+}

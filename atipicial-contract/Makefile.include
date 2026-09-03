@@ -1,0 +1,12 @@
+# Common Makefile configuration for Atipicial contracts
+
+# Path to the atipicial-wasm tool
+ATC_WASM_PATH := $(REPO_ROOT)/target/release
+ATC_WASM := $(ATC_WASM_PATH)/atipicial-wasm
+
+# Ensure the atipicial-wasm tool is built
+$(ATC_WASM):
+	cd $(REPO_ROOT) && cargo build --release -p atipicial-wasm
+
+# Default flags for rust compilation
+RUSTFLAGS := -Ctarget-feature=+multivalue -Cllvm-args=--combiner-store-merging=false -Clink-arg=--initial-memory=262144 -Clink-arg=-zstack-size=131072

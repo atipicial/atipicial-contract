@@ -1,0 +1,50 @@
+# Copyright @ 2024 - present, Atipicial Network
+# All Rights Reserved
+
+[workspace]
+resolver = "2"
+
+members = [
+    "atipicial-contract",
+    "atipicial-contract-proc-macros",
+    "atipicial-compiler",
+    # Traditional style examples
+    "examples/01-hello-world",
+    "examples/02-simple-token",
+    "examples/02-simple-storage",
+    "examples/03-counter",
+    "examples/04-aep17-token",
+    "examples/05-aep11-nft",
+    "examples/06-aep24-royalty-nft",
+    "examples/07-crowdfunding",
+    "examples/08-staking",
+    "examples/09-simple-dex",
+    "examples/10-multisig-wallet",
+    "examples/11-governance",
+    "examples/12-oracle-price-feed",
+    "examples/13-nft-marketplace",
+    "examples/14-atipicial-features-showcase",
+    "examples/15-atipicial-complete-features",
+    # Solana-style examples
+    "examples/01-hello-world-solana-style-simple",
+    "examples/01-hello-world-solana-style",
+    "examples/04-aep17-token-solana-style",
+    # DeFi examples
+    "examples/defi/uniswap-v2-amm",
+    "examples/defi/compound-lending",
+    "examples/defi/aave-flashloan",
+    "examples/defi/test-tokens",
+    "examples/defi/real-aep17-token",
+    "examples/defi/real-uniswap-amm",
+    "examples/defi/real-compound-lending",
+    "examples/defi/real-aave-flash",
+]
+
+[profile.release]
+panic = "abort"
+lto = "fat"
+opt-level = 3
+codegen-units = 1
+
+[profile.dev]
+panic = "abort"

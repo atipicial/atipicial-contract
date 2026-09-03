@@ -1,0 +1,12 @@
+[package]
+name = "staking"
+version = "1.0.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wee_alloc = "0.4"
+atipicial-contract = { path = "../../atipicial-contract" }
+

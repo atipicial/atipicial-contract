@@ -1,0 +1,13 @@
+[package]
+name = "atipicial-features-showcase"
+version = "1.0.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+atipicial-contract = { path = "../../atipicial-contract" }
+
+[dependencies.wee_alloc]
+version = "0.4"

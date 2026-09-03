@@ -1,0 +1,19 @@
+# Copyright @ 2023 - 2024, Atipicial Network
+# All Rights Reserved
+
+[package]
+name = "atipicial-contract"
+version = "1.0.0"
+edition = "2021"
+
+[features]
+std = []
+
+[dependencies]
+atipicial-contract-proc-macros = { path = "../atipicial-contract-proc-macros" }
+
+[target.'cfg(not(target_family = "wasm"))'.dependencies]
+num256     = { version = "0.6" }
+num-traits = { version = "0.2" }
+hex        = { version = "0.4" }
+lazy_static = { version = "1.4" }

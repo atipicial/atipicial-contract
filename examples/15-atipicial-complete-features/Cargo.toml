@@ -1,0 +1,12 @@
+[package]
+name = "atipicial-complete-features"
+version = "1.0.0"
+edition = "2021"
+
+[dependencies]
+wee_alloc = "0.4"
+atipicial-contract = { path = "../../atipicial-contract" }
+atipicial-contract-proc-macros = { path = "../../atipicial-contract-proc-macros" }
+
+[lib]
+crate-type = ["cdylib"]
